@@ -12,6 +12,7 @@ esac
 . /usr/share/initramfs-tools/hook-functions
 
 manual_add_modules overlay squashfs 9p 9pnet_virtio loop sqlzma unlzma
+manual_add_modules r8169
 auto_add_modules net
 copy_exec /usr/bin/curl /bin
 copy_exec /usr/bin/udp-receiver /bin
