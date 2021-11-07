@@ -13,6 +13,8 @@ esac
 
 manual_add_modules overlay squashfs 9p 9pnet_virtio loop sqlzma unlzma
 auto_add_modules net
+copy_modules_dir kernel/net
+copy_modules_dir kernel/drivers/net
 copy_exec /usr/bin/curl /bin
 copy_exec /usr/bin/udp-receiver /bin
 copy_exec /usr/bin/rsync /bin
