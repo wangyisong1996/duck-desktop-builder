@@ -359,17 +359,18 @@ jobs:
         name: Install vscode extensions
         run: |
           . /tmp/func
-          download_release(){
-            local repo_name="$1"
-            local asset_name="$2"
-            local output_name="$3"
-
-            local down_url="$(curl -sfL "https://api.github.com/repos/${repo_name}/releases/latest" | jq -r '.assets[] | select (.name == "'"$asset_name"'") | [.][0].browser_download_url')"
+          download_latest_release(){
+            local publisher="$1"
+            local extension="$2"
+            local version="$3"
+            local params="$4"
+            local output_name="$publisher.$extension.$version.vsix"
+            local down_url="https://$publisher.gallery.vsassets.io/_apis/public/gallery/publisher/$publisher/extension/$extension/$version/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage$params"
             echo "Downloading $down_url"
             curl -sfL "$down_url" > "$output_name"
           }
-          download_release "microsoft/vscode-cpptools" "cpptools-linux.vsix" "cpptools-linux.vsix"
-          download_release "microsoft/vscode-python" "ms-python-release.vsix" "ms-python-release.vsix"
+          download_latest_release "ms-vscode" "cpptools" "1.13.3" "?targetPlatform=linux-x64"
+          download_latest_release "ms-python" "python" "latest" ""
           for i in *.vsix; do
             sudo mv "$i" rootfs/
             as-user code --install-extension "/$i"
