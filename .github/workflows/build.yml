@@ -184,10 +184,10 @@ jobs:
         name: Install additional fonts
         run: |
           . /tmp/func
-          echo "deb ${BUILD_MIRROR} hirsute main restricted universe multiverse" | sudo tee /etc/apt/sources.list.d/hirsute.list
+          echo "deb ${BUILD_MIRROR} jammy main restricted universe multiverse" | sudo tee /etc/apt/sources.list.d/jammy.list
           sudo apt-get update
-          apt-get download fonts-jetbrains-mono/hirsute
-          sudo rm /etc/apt/sources.list.d/hirsute.list
+          apt-get download fonts-jetbrains-mono/jammy
+          sudo rm /etc/apt/sources.list.d/jammy.list
           sudo apt-get update
           sudo mv fonts-jetbrains-mono_*.deb rootfs/tmp/fonts-jetbrains-mono.deb
           in-root apt-get install --no-install-recommends -y /tmp/fonts-jetbrains-mono.deb
