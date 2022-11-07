@@ -1,6 +1,8 @@
 locales
 tzdata
-xubuntu-desktop
+vanilla-gnome-desktop
+vanilla-gnome-default-settings
+htop
 build-essential
 linux-image-generic
 vim
