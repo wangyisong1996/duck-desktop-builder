@@ -318,6 +318,7 @@ jobs:
           fi
           in-root useradd -m -s /bin/bash "$USERNAME"
           echo "${USERNAME}:${PASSWD}" | in-root chpasswd
+          in-root usermod -L "$USERNAME"
 
       - name: Shall we output changed files?
         id: debug_output
